@@ -34,7 +34,7 @@ return self;
 }
 
 - (NSArray *)requestWorkers
-
+{
     return self.workersContent.copy;
     
 }
