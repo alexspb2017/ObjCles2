@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WorkerProvider.h"
 
 @interface MyTableViewController : UITableViewController
+
+@property (strong)  WorkerProvider *provider;
 
 @end

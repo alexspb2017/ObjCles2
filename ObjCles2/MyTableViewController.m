@@ -7,9 +7,9 @@
 //
 
 #import "MyTableViewController.h"
-
+#import "Worker.h"
 @interface MyTableViewController ()
-
+@property (copy) NSArray *workers;
 @end
 
 @implementation MyTableViewController
@@ -17,39 +17,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _workers = [self.provider requestWorkers];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1; //skolko sekciy
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return self.workers.count; //skolko yacheek
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    //sozdaem yacheiku
+    Worker *worker =self.workers[indexPath.row];
+    cell.textLabel.text=worker.name;
+    cell.detailTextLabel.text= [NSString stringWithFormat:@"%lu", worker.salary];
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
