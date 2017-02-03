@@ -10,6 +10,6 @@
 
 @interface WorkerProvider : NSObject
 
-- (NSArray *)requestWorkers;
+- (NSArray *)requestWorkers; //генерирует модели и отдает для отрисовки в контроллер
 
 @end

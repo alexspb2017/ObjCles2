@@ -17,73 +17,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _workers = [self.provider requestWorkers];
+    _workers = [self.provider requestWorkers];  //получаем переменные
 }
 
 
-#pragma mark - Table view data source
+#pragma mark - Table view data source // как вставляем данные в таблицу
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1; //skolko sekciy
+    return 1; //сколько секций в таблице
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.workers.count; //skolko yacheek
+    return self.workers.count; //сколько ячеек в секции
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-    //sozdaem yacheiku
-    Worker *worker =self.workers[indexPath.row];
-    cell.textLabel.text=worker.name;
-    cell.detailTextLabel.text= [NSString stringWithFormat:@"%lu", worker.salary];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath]; //получаем экземпляр ячейки, она будет браться из кеша
+         //sozdaem yacheiku
+    Worker *worker =self.workers[indexPath.row]; //привязываем кол-во ячеек к кол-ву воркеров
+    cell.textLabel.text=worker.name; //данные в 1 поле ячейки
+    cell.detailTextLabel.text= [NSString stringWithFormat:@"%lu", worker.salary]; //данные во 2 ячейку. из цифры преобразовали в строку
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
